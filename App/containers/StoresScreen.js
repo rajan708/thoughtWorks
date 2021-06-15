@@ -2,170 +2,306 @@ import React, {useState} from 'react';
 import {
   StyleSheet,
   View,
+  FlatList,
   Text,
-  TextInput,
+  Modal,
   TouchableOpacity,
   ImageBackground,
-  FlatList,
+  Image,
 } from 'react-native';
 import {colors, fontScale, fontName, images} from '../utils';
-import MaterialCommunityIcons from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/Fontisto';
+import MaterialCommunityIcons2 from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons3 from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const DATA = [
   {
-    title: 'Morning Smoothies',
-    time: '45 minutes',
-    people: '5 People',
+    title: '1. Oil the waffle maker.',
   },
   {
-    title: 'Morning Smoothies',
-    time: '45 minutes',
-    people: '5 People',
+    title: '2. Sift the dry ingredients together in a large bowl.',
   },
   {
-    title: 'Morning Smoothies',
-    time: '45 minutes',
-    people: '5 People',
+    title:
+      '3. In separate bowl, separate egg whites and beat until stiff peaks form.',
   },
   {
-    title: 'Morning Smoothies',
-    time: '45 minutes',
-    people: '5 People',
+    title:
+      '4. Mix together the egg yolks, milk, oil, and vanilla, stir slightly.',
   },
 ];
-
+const DATA1 = [
+  {
+    title: 'Salt',
+    qty: '1/2 cup',
+  },
+  {
+    title: 'Sugar',
+    qty: '1/2 cup',
+  },
+  {
+    title: 'Baking Powder',
+    qty: '1/2 cup',
+  },
+  {
+    title: 'Milk',
+    qty: '1/2 cup',
+  },
+];
 export const StoresScreen = () => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <View style={{flex: 1, backgroundColor: 'white', alignItems: 'center'}}>
-      <View
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: '#f3f3f3',
+        alignItems: 'center',
+        height: '100%',
+      }}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={visible}
+        onRequestClose={() => {}}>
+        <View
+          style={{
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'rgba(0,0,0,0.5)',
+          }}>
+          <View
+            style={{
+              height: '70%',
+              marginTop: 'auto',
+              backgroundColor: 'white',
+              borderRadius: 10,
+              width: '100%',
+              alignItems: 'center',
+            }}>
+            <View
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'row',
+                height: 50,
+                width: '100%',
+              }}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  position: 'absolute',
+                  left: 20,
+                  paddingVertical: 10,
+                }}>
+                <MaterialCommunityIcons2
+                  name="chevron-down"
+                  color={colors.primary}
+                  size={18}
+                />
+              </View>
+              <Text
+                style={[
+                  {
+                    color: colors.primary,
+                    fontSize: fontScale(17),
+                    fontFamily: fontName.PRIMARY_REGULAR,
+                  },
+                ]}>
+                Reservation
+              </Text>
+            </View>
+         
+            <TouchableOpacity
+              onPress={() => {
+                setVisible(false);
+              }}
+              
+              style={{
+                height: '10%',
+                width: '90%',
+                borderRadius: 10,
+                backgroundColor: colors.textColor,
+                alignItems: 'center',
+                justifyContent: 'center',
+                bottom: 50,flexDirection:'row',top:10
+              }}>
+                  <MaterialCommunityIcons2
+            name="apple"
+            color={'white'}
+            size={18}
+          />  
+              <Text
+                style={{
+                  color: colors.secondary,
+                  fontSize: fontScale(17),
+                  fontFamily: fontName.PRIMARY_BOLD,left:5
+                }}>
+                Pay
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+      <ImageBackground
+        source={images.food}
         style={{
-          height: '20%',
-          backgroundColor: colors.primary,
+          height: 200,
+          top: '12%',
           justifyContent: 'center',
-          paddingLeft: 10,
           width: '100%',
+          flexDirection: 'row',
+          alignItems: 'flex-start',
+          paddingVertical: 10,
         }}>
         <View
           style={{
             flexDirection: 'row',
-            height: '50%',
-            top: 20,
-            paddingHorizontal: 20,
-            width: '100%',
             alignItems: 'center',
-            justifyContent: 'space-between',
+            position: 'absolute',
+            left: 20,
+            paddingVertical: 10,
           }}>
-          <TextInput style={styles.input} placeholder="" />
-          <MaterialCommunityIcons name="search" color={'white'} size={25} />
+          <MaterialCommunityIcons2
+            name="chevron-left"
+            color={'white'}
+            size={18}
+          />
+
+          <Text
+            style={[
+              {
+                color: colors.secondary,
+                fontSize: fontScale(20),
+                fontFamily: fontName.PRIMARY_REGULAR,
+              },
+            ]}>
+            Resturents
+          </Text>
+        </View>
+
+        <View
+          style={{
+            position: 'absolute',
+            right: 10,
+            alignItems: 'center',
+            paddingVertical: 10,
+          }}>
+          <MaterialCommunityIcons name="favorite" color={'white'} size={25} />
         </View>
         <Text
           style={[
             {
               color: colors.secondary,
-              fontSize: fontScale(25),
+              fontSize: fontScale(34),
               fontFamily: fontName.PRIMARY_REGULAR,
-              textAlign: 'left',
+              position: 'absolute',
+              left: 10,
+              bottom: 10,
             },
           ]}>
-          Resturents
+          Gusteau’s
         </Text>
-      </View>
+      </ImageBackground>
       <View
         style={{
-          height: '70%',
+          height: '10%',
+          top: '10%',
+          width: '100%',
+          backgroundColor: colors.secondary,
           alignItems: 'center',
-          justifyContent: 'center',
-          // paddingVertical: 0,
-          top:'12%',
-                    width: '100%',
+          justifyContent: 'space-between',
+          flexDirection: 'row',
+          paddingHorizontal: 40,
         }}>
-        <ImageBackground
-          source={images.food}
-          style={{height: '60%', width: '100%'}}>
-        
-        </ImageBackground>
-        <View
-          style={{
-            alignItems: 'center',
-            width: '100%',
-            // top: '8%',
-            justifyContent: 'center',
-            height:'80%'
-          }}>
-          <FlatList
-            style={{width: '90%', height: '80%'}}
-            data={DATA}
-            renderItem={({item, index}) => (
-              <View
-                style={{
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  height: 150,
-                  marginTop: 10,
-                  width: '100%',
-                  borderRadius: 10,
-                  overflow: 'hidden',
-                }}>
-                <ImageBackground
-                  resizeMode="cover"
-                  source={images.food}
-                  style={{
-                    height: 150,
-                    width: '100%',
-                    // padding: 10,
-                    backgroundColor: 'white',
-                    borderBottomColor: 'grey',
-                    borderBottomWidth: 0.2,
-                    alignItems: 'flex-start',
-                    justifyContent: 'space-between',
-                    opacity: 0.9,
-                    backgroundColor: colors.textColor,
-                  }}>
-                  <Text
-                    style={{
-                      color: colors.secondary,
-                      fontSize: fontScale(28),
-                      // height: 50,
-                      fontFamily: fontName.PRIMARY_BOLD,
-                      padding: 10,
-                    }}>
-                    {item.title}
-                  </Text>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'flex-start',
-                      width: '90%',
-                      padding: 10,
-                    }}>
-                    <Text
-                      style={{
-                        color: colors.secondary,
-                        fontSize: fontScale(17),
-                        // height: 50,
-                        fontFamily: fontName.PRIMARY_BOLD,
-                      }}>
-                      {item.people}
-                    </Text>
-                    <Text
-                      style={{
-                        color: colors.secondary,
-                        fontSize: fontScale(17),
-                        // height: 50,
-                        fontFamily: fontName.PRIMARY_BOLD,
-                        left: 10,
-                      }}>
-                      {item.time}
-                    </Text>
-                  </View>
-                </ImageBackground>
-              </View>
-            )}
+        <View style={{alignItems: 'center', justifyContent: 'space-between'}}>
+          <MaterialCommunityIcons3
+            name="restaurant"
+            color={colors.primary}
+            size={25}
           />
+
+          <Text
+            style={{
+              color: colors.primary,
+              fontSize: fontScale(10),
+              fontFamily: fontName.PRIMARY_BOLD,
+            }}>
+            6 people
+          </Text>
+        </View>
+        <View style={{alignItems: 'center', justifyContent: 'space-between'}}>
+          <MaterialCommunityIcons3
+            name="restaurant"
+            color={colors.primary}
+            size={25}
+          />
+
+          <Text
+            style={{
+              color: colors.primary,
+              fontSize: fontScale(10),
+              fontFamily: fontName.PRIMARY_BOLD,
+            }}>
+            6 people
+          </Text>
+        </View>
+        <View style={{alignItems: 'center', justifyContent: 'space-between'}}>
+          <MaterialCommunityIcons
+            name="clock"
+            color={colors.primary}
+            size={25}
+          />
+
+          <Text
+            style={{
+              color: colors.primary,
+              fontSize: fontScale(10),
+              fontFamily: fontName.PRIMARY_BOLD,
+            }}>
+            45 minutes
+          </Text>
         </View>
       </View>
+      <Image
+        source={images.maps}
+        style={{height: 150, width: '100%', top: '4%'}}
+      />
+      <TouchableOpacity
+      onPress={() => setVisible(true)}
+        style={{
+          height: '8%',
+          top: '7%',
+          width: '90%',
+          borderRadius: 10,
+          backgroundColor: colors.primary,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <Text
+          style={{
+            color: colors.secondary,
+            fontSize: fontScale(17),
+            fontFamily: fontName.PRIMARY_BOLD,
+          }}>
+          Make Reservation
+        </Text>
+      </TouchableOpacity>
+      <Text
+        style={{
+          color: colors.textColor,
+          fontSize: fontScale(17),
+          // height: 50,
+          top:'10%',paddingHorizontal:10,
+          fontFamily: fontName.PRIMARY_BOLD,backgroundColor:'white'
+        }}>
+        The restaurant was degraded to a 4-star rating after feared food critic
+        Anton Ego (possibly deliberately) wrote a scathing review regarding
+        Gusteau’s cooking.
+      </Text>
+    
     </View>
   );
 };
